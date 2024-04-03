@@ -1,11 +1,16 @@
 import fastify from "fastify";
+import { serializerCompiler, validatorCompiler, ZodTypeProvider } from "fastify-type-provider-zod";
+import { createEvent } from "./routes/create-event";
+import { registerForEvent } from "./routes/register-event";
 
-const app = fastify()
+const app = fastify();
 
-app.get("/", () => { 
-  return "salve salve balao"
-})
+app.setValidatorCompiler(validatorCompiler);
+app.setSerializerCompiler(serializerCompiler);
 
-app.listen({port : 3333}).then(() => {
-  console.log("http server running in localhost:3333")
-})
+app.register(createEvent)
+app.register(registerForEvent)
+
+app.listen({ port: 3333 }).then(() => {
+  console.log("HTTP server running in localhost:3333");
+});
