@@ -17,3 +17,11 @@ Content-Type: application/json
    "email":"johnd@doedssd.com"
    
 }
+
+###
+
+GET  http://localhost:3333/events/a5ab41e5-3249-4419-8866-b43039ea7a86
+
+
+### 
+GET  http://localhost:3333//attendees/1/badge
