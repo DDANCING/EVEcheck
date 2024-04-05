@@ -2,26 +2,32 @@ POST http://localhost:3333/events
 Content-Type:  application/json
 
 {
-    "title": "evento testcdf",
+    "title": "evento testcdsf",
     "details": "evento realizado para o teste do aplicativo",
-    "maximumAttendees": 1
+    "maximumAttendees": 2
 }
 
 ###
 
-POST http://localhost:3333/events/a5ab41e5-3249-4419-8866-b43039ea7a86/attendees
+POST http://localhost:3333/events/dc420fad-e320-435f-bf36-e0ad01ef48ed/attendees
 Content-Type: application/json
 
 {
    "name":"Jodhn Doed",
-   "email":"johnd@doedssd.com"
+   "email":"johnd@doedssdd.com"
    
 }
 
 ###
 
-GET  http://localhost:3333/events/a5ab41e5-3249-4419-8866-b43039ea7a86
+GET  http://localhost:3333/events/a5ab41e5-3249-4419-8866-b43039ea7a86/attendees
 
 
 ### 
-GET  http://localhost:3333//attendees/1/badge
+GET  http://localhost:3333/attendees/5/badge
+
+###
+GET  http://localhost:3333/attendees/1/check-in
+
+###
+GET  http://localhost:3333/events/dc420fad-e320-435f-bf36-e0ad01ef48ed/attendees?query=marcelo
