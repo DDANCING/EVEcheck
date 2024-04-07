@@ -1,51 +1,32 @@
-import React from "react"
-import { Event, columns } from "./events/columns"
-import { DataTable } from "./events/data-table"
-
-
-export async function fetchEventData(): Promise<Event[]> {
-  // Fetch data from your API here.
-  return [
-    {
-      id: 1,
-      name: "John Doe",
-      email:  "john@example.com",
-      createdAt: "10/10/2023",
-      checkedInAt: "10/10/2023"
-    },
-    {
-      id: 1,
-      name: "John Doa",
-      email:  "john@example.com",
-      createdAt: "10/10/2023",
-      checkedInAt: "10/10/2023"
-    },
-  ];
-}
+import { useEffect, useState } from "react";
+import { Event, columns } from "./events/columns";
+import { DataTable } from "./events/data-table";
 
 export function AttendeeList() {
-  // State to hold the fetched data
-  const [data, setData] = React.useState<Event[] | null>(null);
+  const [attendees, setAttendees] = useState<Event[]>([]);
 
-  // Fetch data on component mount
-  React.useEffect(() => {
-    async function fetchData() {
-      const eventData = await fetchEventData();
-      setData(eventData);
-    }
-    fetchData();
+  useEffect(() => {
+    fetch("http://localhost:3333/events/9e9bd979-9d10-4915-b339-3786b1634f33/attendees")
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        return response.json();
+      })
+      .then(data => {
+        setAttendees(data.attendees);
+      })
+      .catch(error => {
+        console.error("Error fetching data:", error);
+      });
   }, []);
-
-  // Render only when data is available
-  if (!data) {
-    return <div>Loading...</div>;
-  }
+    
 
   return (
-    <div className="flex flex-col gap-3 items-center">
+    <div className="flex flex-col items-center">
       
-          <DataTable columns={columns} data={data} />
-      
+        <DataTable columns={columns} data={attendees} />
+     
     </div>
   );
 }
