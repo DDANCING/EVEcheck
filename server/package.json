@@ -9,7 +9,7 @@
     "start": "node dist/server.mjs"
   },
   "keywords": [],
-  "author": "",
+  "author": "Marcelo Mazzonetto marcmaker@outlook.com",
   "license": "ISC",
   "prisma": {
     "seed": "tsx prisma/seed.ts"
